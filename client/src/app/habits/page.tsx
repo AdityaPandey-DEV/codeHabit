@@ -77,7 +77,7 @@ export default function HabitsPage() {
 
     return (
         <div className="p-8 space-y-8">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <div>
                     <h2 className="text-3xl font-bold tracking-tight">Habit Tracker</h2>
                     <p className="text-zinc-400">Build consistency, one day at a time.</p>

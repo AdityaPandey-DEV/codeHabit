@@ -46,7 +46,7 @@ export default function LeetCodePage() {
 
     return (
         <div className="p-8 space-y-8">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <div>
                     <h2 className="text-3xl font-bold tracking-tight">LeetCode Activity</h2>
                     <p className="text-zinc-400">Sync your latest solutions and track progress.</p>
