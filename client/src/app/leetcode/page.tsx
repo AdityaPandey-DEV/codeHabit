@@ -57,7 +57,7 @@ export default function LeetCodePage() {
                 </Button>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-3">
+            <div className="grid gap-4 grid-cols-1 md:grid-cols-3">
                 <Card className="bg-zinc-900 border-zinc-800 text-white">
                     <CardHeader>
                         <CardTitle>Total Solved (Synced)</CardTitle>
@@ -90,8 +90,8 @@ export default function LeetCodePage() {
                                             <p className="font-medium text-lg">{sub.problemTitle}</p>
                                             <div className="flex items-center gap-2 text-sm text-zinc-400">
                                                 <span className={`px-2 py-0.5 rounded text-xs font-semibold ${sub.difficulty === 'HARD' ? 'bg-red-900/30 text-red-400' :
-                                                        sub.difficulty === 'MEDIUM' ? 'bg-yellow-900/30 text-yellow-400' :
-                                                            'bg-green-900/30 text-green-400'
+                                                    sub.difficulty === 'MEDIUM' ? 'bg-yellow-900/30 text-yellow-400' :
+                                                        'bg-green-900/30 text-green-400'
                                                     }`}>
                                                     {sub.difficulty}
                                                 </span>

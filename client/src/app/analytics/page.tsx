@@ -59,7 +59,7 @@ export default function AnalyticsPage() {
                 <Button className="border border-zinc-700 bg-transparent text-white hover:bg-zinc-800" onClick={() => window.location.reload()}>Refresh</Button>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
                 {/* Insight Card */}
                 <Card className="bg-zinc-900 border-zinc-800 text-white">
                     <CardHeader>

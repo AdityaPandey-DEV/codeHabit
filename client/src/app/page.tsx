@@ -85,7 +85,7 @@ export default function Dashboard() {
       </div>
 
       {/* Top Stats */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         <Card className="bg-zinc-900 border-zinc-800 text-white">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Habits (30d)</CardTitle>
@@ -127,8 +127,8 @@ export default function Dashboard() {
       </div>
 
       {/* Charts Row */}
-      <div className="grid gap-4 md:grid-cols-7">
-        <Card className="col-span-4 bg-zinc-900 border-zinc-800 text-white">
+      <div className="grid gap-4 grid-cols-1 lg:grid-cols-7">
+        <Card className="col-span-1 lg:col-span-4 bg-zinc-900 border-zinc-800 text-white">
           <CardHeader>
             <CardTitle>Performance Correlation</CardTitle>
             <CardDescription>Visualizing the link between your habits and coding output.</CardDescription>
@@ -155,7 +155,7 @@ export default function Dashboard() {
         </Card>
 
         {/* Recent Submissions */}
-        <Card className="col-span-3 bg-zinc-900 border-zinc-800 text-white">
+        <Card className="col-span-1 lg:col-span-3 bg-zinc-900 border-zinc-800 text-white">
           <CardHeader>
             <CardTitle>Recent Activity</CardTitle>
             <CardDescription>Latest LeetCode submissions.</CardDescription>
