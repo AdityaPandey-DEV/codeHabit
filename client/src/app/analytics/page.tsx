@@ -56,7 +56,7 @@ export default function AnalyticsPage() {
                     <h2 className="text-3xl font-bold tracking-tight">Analytics Deep Dive</h2>
                     <p className="text-zinc-400">Detailed breakdown of your performance metrics.</p>
                 </div>
-                <Button variant="outline" onClick={() => window.location.reload()}>Refresh</Button>
+                <Button className="border border-zinc-700 bg-transparent text-white hover:bg-zinc-800" onClick={() => window.location.reload()}>Refresh</Button>
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">

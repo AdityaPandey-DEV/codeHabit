@@ -79,8 +79,8 @@ export default function Dashboard() {
           <p className="text-zinc-400">Your daily performance overview.</p>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" onClick={() => router.push('/habits')}>Manage Habits</Button>
-          <Button onClick={() => window.location.reload()}>Refresh Data</Button>
+          <Button className="border border-zinc-700 bg-transparent text-white hover:bg-zinc-800" onClick={() => router.push('/habits')}>Manage Habits</Button>
+          <Button className="bg-white text-black hover:bg-zinc-200" onClick={() => window.location.reload()}>Refresh Data</Button>
         </div>
       </div>
 
