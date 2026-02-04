@@ -1,21 +1,21 @@
 import { Router, Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
+import { protect } from '../middleware/auth.middleware';
 
 const router = Router();
 const prisma = new PrismaClient();
+
+// Apply authentication middleware to all routes
+router.use(protect);
 
 // Get diary entry, tasks, and habit logs for a specific date
 router.get('/:date', async (req: Request, res: Response): Promise<any> => {
     try {
         const { date } = req.params;
-        const userId = req.query.userId as string;
+        const userId = req.user.id;
 
-        if (!userId) {
-            return res.status(401).json({ error: 'Unauthorized' });
-        }
-
-        const targetDate = new Date(date);
+        const targetDate = new Date(date as string);
 
         const diaryEntry = await prisma.diaryEntry.findUnique({
             where: {
@@ -31,6 +31,9 @@ router.get('/:date', async (req: Request, res: Response): Promise<any> => {
                 userId,
                 date: targetDate,
             },
+            orderBy: {
+                createdAt: 'asc'
+            }
         });
 
         // Also fetch habits for this date? The requirement says "track of his habit".
@@ -48,11 +51,7 @@ router.get('/:date', async (req: Request, res: Response): Promise<any> => {
 router.post('/entry', async (req: Request, res: Response): Promise<any> => {
     try {
         const { date, content } = req.body;
-        const userId = req.body.userId;
-
-        if (!userId) {
-            return res.status(401).json({ error: 'Unauthorized' });
-        }
+        const userId = req.user.id;
 
         const targetDate = new Date(date);
 
@@ -84,11 +83,7 @@ router.post('/entry', async (req: Request, res: Response): Promise<any> => {
 router.post('/task', async (req: Request, res: Response): Promise<any> => {
     try {
         const { date, content } = req.body;
-        const userId = req.body.userId;
-
-        if (!userId) {
-            return res.status(401).json({ error: 'Unauthorized' });
-        }
+        const userId = req.user.id;
 
         const task = await prisma.task.create({
             data: {
@@ -110,7 +105,7 @@ router.patch('/task/:id', async (req: Request, res: Response): Promise<any> => {
     try {
         const { id } = req.params;
         const { content, completed } = req.body;
-        const userId = req.body.userId;
+        const userId = req.user.id;
 
         // Verify ownership
         const existingTask = await prisma.task.findUnique({ where: { id } });
@@ -137,7 +132,7 @@ router.patch('/task/:id', async (req: Request, res: Response): Promise<any> => {
 router.delete('/task/:id', async (req: Request, res: Response): Promise<any> => {
     try {
         const { id } = req.params;
-        const userId = req.body.userId;
+        const userId = req.user.id;
 
         // Verify ownership
         const existingTask = await prisma.task.findUnique({ where: { id } });
@@ -160,11 +155,7 @@ router.delete('/task/:id', async (req: Request, res: Response): Promise<any> => 
 router.post('/timer', async (req: Request, res: Response): Promise<any> => {
     try {
         const { date, minutes } = req.body;
-        const userId = req.body.userId;
-
-        if (!userId) {
-            return res.status(401).json({ error: 'Unauthorized' });
-        }
+        const userId = req.user.id;
 
         const targetDate = new Date(date);
 

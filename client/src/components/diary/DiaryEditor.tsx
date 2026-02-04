@@ -4,14 +4,14 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
+import api from "@/lib/api";
 
 interface DiaryEditorProps {
     date: Date;
     initialContent: string;
-    userId: string;
 }
 
-export default function DiaryEditor({ date, initialContent, userId }: DiaryEditorProps) {
+export default function DiaryEditor({ date, initialContent }: DiaryEditorProps) {
     const [content, setContent] = useState(initialContent);
     const [isSaving, setIsSaving] = useState(false);
 
@@ -22,21 +22,10 @@ export default function DiaryEditor({ date, initialContent, userId }: DiaryEdito
     const handleSave = async () => {
         setIsSaving(true);
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/diary/entry`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    userId, // In a real app, this should come from auth context/token
-                    date: date.toISOString(),
-                    content,
-                }),
+            await api.post('/diary/entry', {
+                date: date.toISOString(),
+                content,
             });
-
-            if (!response.ok) {
-                throw new Error("Failed to save diary entry");
-            }
 
             toast.success("Diary entry saved!");
         } catch (error) {

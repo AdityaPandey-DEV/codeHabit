@@ -5,13 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Play, Pause, Square, Save } from "lucide-react";
 import { toast } from "sonner";
+import api from "@/lib/api";
 
 interface TimerProps {
-    userId: string;
     date: Date;
 }
 
-export default function Timer({ userId, date }: TimerProps) {
+export default function Timer({ date }: TimerProps) {
     const [seconds, setSeconds] = useState(0);
     const [isActive, setIsActive] = useState(false);
 
@@ -43,17 +43,10 @@ export default function Timer({ userId, date }: TimerProps) {
         const minutes = Math.ceil(seconds / 60);
 
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/diary/timer`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    userId,
-                    date: date.toISOString(),
-                    minutes,
-                }),
+            await api.post('/diary/timer', {
+                date: date.toISOString(),
+                minutes,
             });
-
-            if (!response.ok) throw new Error("Failed to save session");
 
             toast.success(`Saved ${minutes} minutes of study time!`);
             resetTimer();

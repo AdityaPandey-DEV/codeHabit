@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Trash2, Plus } from "lucide-react";
 import { toast } from "sonner";
+import api from "@/lib/api";
 
 interface Task {
     id: string;
@@ -17,10 +18,9 @@ interface Task {
 interface TaskListProps {
     date: Date;
     initialTasks: Task[];
-    userId: string;
 }
 
-export default function TaskList({ date, initialTasks, userId }: TaskListProps) {
+export default function TaskList({ date, initialTasks }: TaskListProps) {
     const [tasks, setTasks] = useState<Task[]>(initialTasks);
     const [newTaskContent, setNewTaskContent] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -35,21 +35,12 @@ export default function TaskList({ date, initialTasks, userId }: TaskListProps) 
 
         setIsLoading(true);
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/diary/task`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    userId,
-                    date: date.toISOString(),
-                    content: newTaskContent,
-                }),
+            const response = await api.post('/diary/task', {
+                date: date.toISOString(),
+                content: newTaskContent,
             });
 
-            if (!response.ok) throw new Error("Failed to add task");
-
-            const newTask = await response.json();
+            const newTask = response.data;
             setTasks([...tasks, newTask]);
             setNewTaskContent("");
             toast.success("Task added");
@@ -66,13 +57,7 @@ export default function TaskList({ date, initialTasks, userId }: TaskListProps) 
         setTasks(tasks.map(t => t.id === id ? { ...t, completed } : t));
 
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/diary/task/${id}`, {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ userId, completed }),
-            });
-
-            if (!response.ok) throw new Error("Failed to update task");
+            await api.patch(`/diary/task/${id}`, { completed });
         } catch (error) {
             console.error(error);
             toast.error("Failed to update task");
@@ -86,13 +71,7 @@ export default function TaskList({ date, initialTasks, userId }: TaskListProps) 
         setTasks(tasks.filter(t => t.id !== id));
 
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/diary/task/${id}`, {
-                method: "DELETE",
-                headers: { "Content-Type": "application/json" }, // Should pass userId in body or header if strictly required by backend logic but DELETE usually doesn't have body in some specs. Backend expects body.userId.
-                body: JSON.stringify({ userId }),
-            });
-
-            if (!response.ok) throw new Error("Failed to delete task");
+            await api.delete(`/diary/task/${id}`);
         } catch (error) {
             console.error(error);
             toast.error("Failed to delete task");
