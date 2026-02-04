@@ -22,6 +22,8 @@ model User {
   habits             Habit[]
   leetcodeSubmissions LeetCodeSubmission[]
   dailySnapshots     DailySnapshot[]
+  diaryEntries     DiaryEntry[]
+  tasks            Task[]
 }
 
 enum Frequency {
@@ -112,4 +114,29 @@ model DailySnapshot {
   createdAt       DateTime @default(now())
 
   @@unique([userId, date])
+}
+
+model DiaryEntry {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  date      DateTime
+  content   String   // For fault description / reflection
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, date])
+}
+
+model Task {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  date      DateTime
+  content   String
+  completed Boolean  @default(false)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

@@ -9,6 +9,7 @@ import authRoutes from './routes/auth.routes';
 import habitRoutes from './routes/habit.routes';
 import leetcodeRoutes from './routes/leetcode.routes';
 import analyticsRoutes from './routes/analytics.routes';
+import diaryRoutes from './routes/diary.routes';
 
 const app: Express = express();
 const port = process.env.PORT || 8000;
@@ -20,6 +21,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/habits', habitRoutes);
 app.use('/api/leetcode', leetcodeRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/diary', diaryRoutes);
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Habit & LeetCode Analytics API is running');
