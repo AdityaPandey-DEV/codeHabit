@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, ListTodo, BarChart2, Settings, Code2 } from "lucide-react";
+import { Home, ListTodo, BarChart2, Settings, Code2, Book } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const routes = [
@@ -23,6 +23,12 @@ const routes = [
         icon: Code2,
         href: "/leetcode",
         color: "text-orange-500",
+    },
+    {
+        label: "Diary",
+        icon: Book,
+        href: "/diary",
+        color: "text-pink-500",
     },
     {
         label: "Analytics",
