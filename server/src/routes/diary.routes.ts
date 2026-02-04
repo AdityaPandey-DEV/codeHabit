@@ -9,13 +9,19 @@ const prisma = new PrismaClient();
 // Apply authentication middleware to all routes
 router.use(protect);
 
+// Helper to normalize date to UTC start of day
+const getStartOfDay = (dateString: string | Date): Date => {
+    const date = new Date(dateString);
+    return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+};
+
 // Get diary entry, tasks, and habit logs for a specific date
 router.get('/:date', async (req: Request, res: Response): Promise<any> => {
     try {
         const { date } = req.params;
         const userId = req.user.id;
 
-        const targetDate = new Date(date as string);
+        const targetDate = getStartOfDay(date);
 
         const diaryEntry = await prisma.diaryEntry.findUnique({
             where: {
@@ -53,7 +59,7 @@ router.post('/entry', async (req: Request, res: Response): Promise<any> => {
         const { date, content } = req.body;
         const userId = req.user.id;
 
-        const targetDate = new Date(date);
+        const targetDate = getStartOfDay(date);
 
         const entry = await prisma.diaryEntry.upsert({
             where: {
@@ -88,7 +94,7 @@ router.post('/task', async (req: Request, res: Response): Promise<any> => {
         const task = await prisma.task.create({
             data: {
                 userId,
-                date: new Date(date),
+                date: getStartOfDay(date),
                 content,
             },
         });
@@ -103,7 +109,7 @@ router.post('/task', async (req: Request, res: Response): Promise<any> => {
 // Update task (toggle completion or content)
 router.patch('/task/:id', async (req: Request, res: Response): Promise<any> => {
     try {
-        const { id } = req.params;
+        const id = req.params.id as string;
         const { content, completed } = req.body;
         const userId = req.user.id;
 
@@ -131,7 +137,7 @@ router.patch('/task/:id', async (req: Request, res: Response): Promise<any> => {
 // Delete task
 router.delete('/task/:id', async (req: Request, res: Response): Promise<any> => {
     try {
-        const { id } = req.params;
+        const id = req.params.id as string;
         const userId = req.user.id;
 
         // Verify ownership
@@ -157,7 +163,7 @@ router.post('/timer', async (req: Request, res: Response): Promise<any> => {
         const { date, minutes } = req.body;
         const userId = req.user.id;
 
-        const targetDate = new Date(date);
+        const targetDate = getStartOfDay(date);
 
         const snapshot = await prisma.dailySnapshot.upsert({
             where: {
