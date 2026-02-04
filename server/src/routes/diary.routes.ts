@@ -18,7 +18,7 @@ const getStartOfDay = (dateString: string | Date): Date => {
 // Get diary entry, tasks, and habit logs for a specific date
 router.get('/:date', async (req: Request, res: Response): Promise<any> => {
     try {
-        const { date } = req.params;
+        const date = req.params.date as string;
         const userId = req.user.id;
 
         const targetDate = getStartOfDay(date);
