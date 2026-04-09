@@ -93,9 +93,9 @@ export default function AuthPage() {
                 </div>
 
                 <Tabs defaultValue="login" className="w-full">
-                    <TabsList className="grid w-full grid-cols-2 bg-zinc-900 border border-zinc-800">
-                        <TabsTrigger value="login">Login</TabsTrigger>
-                        <TabsTrigger value="register">Register</TabsTrigger>
+                    <TabsList className="grid w-full grid-cols-2 bg-zinc-900 border border-zinc-800 p-1">
+                        <TabsTrigger value="login" className="data-[state=active]:bg-white data-[state=active]:text-black">Login</TabsTrigger>
+                        <TabsTrigger value="register" className="data-[state=active]:bg-white data-[state=active]:text-black">Register</TabsTrigger>
                     </TabsList>
 
                     <TabsContent value="login">

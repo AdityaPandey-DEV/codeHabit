@@ -1,12 +1,13 @@
 # DevTrack — Habit & Coding Analytics Platform
 
-A full-stack developer productivity platform built with **Next.js 16**, **Prisma**, and **Vercel Postgres**.
+**DevTrack** (formerly CodeHabit) is a unified, serverless Next.js platform designed to be the ultimate productivity command center for developers. It helps you track your daily habits, monitor your LeetCode consistency, complete study diaries, and test your knowledge through core CS quizzes.
 
-Track daily habits, monitor LeetCode coding activity, and test knowledge through quizzes — all in one unified dashboard.
+![DevTrack Dashboard](https://code-habit.vercel.app/opengraph-image.png)
 
-## 🚀 Live Demo
+## 🌐 Live Demo
 
-**[codehabit.vercel.app](https://codehabit.vercel.app)**
+**[code-habit.vercel.app](https://code-habit.vercel.app)**  
+*(Vercel URL renaming coming soon)*
 
 ## ✨ Features
 
