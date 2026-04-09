@@ -24,6 +24,7 @@ model User {
   dailySnapshots     DailySnapshot[]
   diaryEntries     DiaryEntry[]
   tasks            Task[]
+  quizResults      QuizResult[]
 }
 
 enum Frequency {
@@ -61,7 +62,7 @@ enum HabitStatus {
 model HabitLog {
   id        String      @id @default(uuid())
   habitId   String
-  habit     Habit       @relation(fields: [habitId], references: [id])
+  habit     Habit       @relation(fields: [habitId], references: [id], onDelete: Cascade)
   date      DateTime
   status    HabitStatus
   metadata  Json?       // Stores things like { duration: 30, mood: 5 }
@@ -139,4 +140,27 @@ model Task {
   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+// ─── Quiz Module ───────────────────────────────────────────
+
+model Question {
+  id            String @id @default(uuid())
+  subject       String   // "fullstack", "dbms", "os"
+  question      String
+  option1       String
+  option2       String
+  option3       String
+  option4       String
+  correctAnswer Int      // 1, 2, 3, or 4
+}
+
+model QuizResult {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  subject   String
+  score     Int
+  total     Int
+  createdAt DateTime @default(now())
 }

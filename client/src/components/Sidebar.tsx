@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Home, ListTodo, BarChart2, Settings, Code2, Book } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { Home, ListTodo, BarChart2, Code2, Book, BrainCircuit, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const routes = [
@@ -25,6 +25,12 @@ const routes = [
         color: "text-orange-500",
     },
     {
+        label: "Quiz",
+        icon: BrainCircuit,
+        href: "/quiz",
+        color: "text-amber-500",
+    },
+    {
         label: "Analytics",
         icon: BarChart2,
         href: "/analytics",
@@ -40,16 +46,22 @@ const routes = [
 
 export function Sidebar() {
     const pathname = usePathname();
+    const router = useRouter();
 
     // Don't show sidebar on auth page
     if (pathname === "/auth") return null;
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        router.push("/auth");
+    };
 
     return (
         <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white border-r border-[#1f2937]">
             <div className="px-3 py-2 flex-1">
                 <Link href="/" className="flex items-center pl-3 mb-14">
                     <h1 className="text-2xl font-bold">
-                        Code<span className="text-violet-500">Habit</span>
+                        Dev<span className="text-violet-500">Track</span>
                     </h1>
                 </Link>
                 <div className="space-y-1">
@@ -69,6 +81,17 @@ export function Sidebar() {
                         </Link>
                     ))}
                 </div>
+            </div>
+            <div className="px-3 py-2 border-t border-zinc-800">
+                <button
+                    onClick={handleLogout}
+                    className="text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-red-500/10 rounded-lg transition text-zinc-400"
+                >
+                    <div className="flex items-center flex-1">
+                        <LogOut className="h-5 w-5 mr-3 text-red-500" />
+                        Logout
+                    </div>
+                </button>
             </div>
         </div>
     );

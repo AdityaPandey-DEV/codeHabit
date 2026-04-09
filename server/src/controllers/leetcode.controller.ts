@@ -20,8 +20,6 @@ export const syncLeetCode = catchAsync(async (req: Request, res: Response, next:
     for (const sub of recentSubmissions) {
         const submittedAt = new Date(parseInt(sub.timestamp) * 1000);
 
-        // Check if already exists to avoid duplicates
-        // Using a composite check or just checking if we have a submission for this user, slug, and timestamp
         const exists = await prisma.leetCodeSubmission.findFirst({
             where: {
                 userId: user.id,
@@ -62,7 +60,6 @@ export const getLeetCodeStats = catchAsync(async (req: Request, res: Response, n
         take: 100
     });
 
-    // Simple analysis
     // @ts-ignore
     const totalSolved = submissions.filter(s => s.status === 'ACCEPTED').length;
 
@@ -73,4 +70,63 @@ export const getLeetCodeStats = catchAsync(async (req: Request, res: Response, n
             recent: submissions
         }
     });
+});
+
+/**
+ * Fetch LeetCode profile stats and yearly submission calendar
+ * Uses the LeetCode GraphQL API directly (no DB storage needed)
+ */
+export const getLeetCodeProfile = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    const { username } = req.params;
+
+    if (!username) {
+        return next(new AppError('Username is required', 400));
+    }
+
+    try {
+        // Fetch profile and calendar in parallel
+        const [profile, calendar] = await Promise.all([
+            LeetCodeFetcher.getUserProfile(username),
+            LeetCodeFetcher.getSubmissionCalendar(username),
+        ]);
+
+        // Transform calendar to array format for frontend
+        // calendar is { "timestamp": count }
+        const calendarArray = Object.entries(calendar).map(([timestamp, count]) => ({
+            date: new Date(parseInt(timestamp) * 1000).toISOString().split('T')[0],
+            count: count as number,
+        }));
+
+        // Calculate current streak from calendar
+        let currentStreak = 0;
+        const today = new Date();
+        const checkDate = new Date(today);
+        
+        for (let i = 0; i < 365; i++) {
+            const dateStr = checkDate.toISOString().split('T')[0];
+            const found = calendarArray.find(c => c.date === dateStr);
+            if (found && found.count > 0) {
+                currentStreak++;
+                checkDate.setDate(checkDate.getDate() - 1);
+            } else {
+                if (i === 0) {
+                    // Today might not have submissions yet
+                    checkDate.setDate(checkDate.getDate() - 1);
+                    continue;
+                }
+                break;
+            }
+        }
+
+        res.status(200).json({
+            status: 'success',
+            data: {
+                profile,
+                calendar: calendarArray,
+                currentStreak,
+            }
+        });
+    } catch (error: any) {
+        return next(new AppError(error.message || 'Failed to fetch LeetCode data', 500));
+    }
 });

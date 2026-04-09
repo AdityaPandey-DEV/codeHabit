@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import api from "@/lib/api";
+import { Code2, BarChart2, BrainCircuit, ListTodo } from "lucide-react";
 
 export default function AuthPage() {
     const router = useRouter();
@@ -60,12 +61,35 @@ export default function AuthPage() {
     };
 
     return (
-        <div className="flex h-screen w-full items-center justify-center bg-black/95 px-4 backdrop-blur-sm">
+        <div className="flex h-screen w-full items-center justify-center bg-black/95 px-4">
+            {/* Background grid pattern */}
             <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+            
+            {/* Floating gradient orbs */}
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+            
             <div className="z-10 w-full max-w-md space-y-8">
                 <div className="text-center">
-                    <h1 className="text-4xl font-bold tracking-tight text-white mb-2">Code<span className="text-violet-500">Habit</span></h1>
-                    <p className="text-zinc-400">Master your craft with data-driven insights.</p>
+                    <h1 className="text-5xl font-bold tracking-tight text-white mb-2">
+                        Dev<span className="bg-gradient-to-r from-violet-500 to-purple-500 bg-clip-text text-transparent">Track</span>
+                    </h1>
+                    <p className="text-zinc-400 text-lg">Your developer productivity command center</p>
+                    
+                    {/* Feature pills */}
+                    <div className="flex flex-wrap justify-center gap-2 mt-4">
+                        {[
+                            { icon: ListTodo, label: "Habits", color: "text-violet-400" },
+                            { icon: Code2, label: "LeetCode", color: "text-emerald-400" },
+                            { icon: BrainCircuit, label: "Quizzes", color: "text-amber-400" },
+                            { icon: BarChart2, label: "Analytics", color: "text-sky-400" },
+                        ].map((f) => (
+                            <span key={f.label} className="flex items-center gap-1 px-3 py-1 rounded-full bg-zinc-800/50 text-xs text-zinc-300 border border-zinc-700/50">
+                                <f.icon className={`h-3 w-3 ${f.color}`} />
+                                {f.label}
+                            </span>
+                        ))}
+                    </div>
                 </div>
 
                 <Tabs defaultValue="login" className="w-full">
@@ -77,23 +101,23 @@ export default function AuthPage() {
                     <TabsContent value="login">
                         <Card className="bg-zinc-900/50 border-zinc-800 backdrop-blur text-white">
                             <CardHeader>
-                                <CardTitle>Login</CardTitle>
+                                <CardTitle>Welcome Back</CardTitle>
                                 <CardDescription>Enter your credentials to access your dashboard.</CardDescription>
                             </CardHeader>
                             <form onSubmit={onLogin}>
                                 <CardContent className="space-y-4">
                                     <div className="space-y-2">
                                         <Label htmlFor="email">Email</Label>
-                                        <Input id="email" type="email" placeholder="dev@example.com" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} required className="bg-zinc-950/50 border-zinc-800 focus:ring-violet-500" />
+                                        <Input id="email" type="email" placeholder="dev@example.com" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} required className="bg-zinc-950/50 border-zinc-800 focus:ring-violet-500 focus:border-violet-500" />
                                     </div>
                                     <div className="space-y-2">
                                         <Label htmlFor="password">Password</Label>
-                                        <Input id="password" type="password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} required className="bg-zinc-950/50 border-zinc-800 focus:ring-violet-500" />
+                                        <Input id="password" type="password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} required className="bg-zinc-950/50 border-zinc-800 focus:ring-violet-500 focus:border-violet-500" />
                                     </div>
                                 </CardContent>
                                 <CardFooter>
-                                    <Button type="submit" className="w-full bg-violet-600 hover:bg-violet-700" disabled={isLoading}>
-                                        {isLoading ? "Loading..." : "Sign In"}
+                                    <Button type="submit" className="w-full bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 transition-all" disabled={isLoading}>
+                                        {isLoading ? "Signing in..." : "Sign In"}
                                     </Button>
                                 </CardFooter>
                             </form>
@@ -104,7 +128,7 @@ export default function AuthPage() {
                         <Card className="bg-zinc-900/50 border-zinc-800 backdrop-blur text-white">
                             <CardHeader>
                                 <CardTitle>Create Account</CardTitle>
-                                <CardDescription>Start tracking your journey today.</CardDescription>
+                                <CardDescription>Start tracking your developer journey today.</CardDescription>
                             </CardHeader>
                             <form onSubmit={onRegister}>
                                 <CardContent className="space-y-4">
@@ -126,8 +150,8 @@ export default function AuthPage() {
                                     </div>
                                 </CardContent>
                                 <CardFooter>
-                                    <Button type="submit" className="w-full bg-violet-600 hover:bg-violet-700" disabled={isLoading}>
-                                        {isLoading ? "Creating..." : "Create Account"}
+                                    <Button type="submit" className="w-full bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 transition-all" disabled={isLoading}>
+                                        {isLoading ? "Creating account..." : "Create Account"}
                                     </Button>
                                 </CardFooter>
                             </form>

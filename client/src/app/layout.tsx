@@ -8,8 +8,8 @@ import { MobileSidebar } from "@/components/MobileSidebar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "CodeHabit - Integrated Analytics",
-  description: "Track habits and coding performance in one place.",
+  title: "DevTrack — Habit & Coding Analytics Platform",
+  description: "Track habits, monitor LeetCode coding activity, and test knowledge through quizzes in core CS subjects.",
 };
 
 export default function RootLayout({
@@ -27,7 +27,7 @@ export default function RootLayout({
           <main className="md:pl-72 h-full min-h-screen text-white">
             <div className="md:hidden p-4 flex items-center bg-[#111827] border-b border-[#1f2937]">
               <MobileSidebar />
-              <span className="font-bold text-lg ml-2">Code<span className="text-violet-500">Habit</span></span>
+              <span className="font-bold text-lg ml-2">Dev<span className="text-violet-500">Track</span></span>
             </div>
             {children}
           </main>
