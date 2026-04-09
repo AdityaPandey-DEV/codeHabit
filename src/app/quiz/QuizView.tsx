@@ -179,8 +179,7 @@ export default function QuizPage() {
                 {/* Results link */}
                 <div className="flex justify-center">
                     <Button
-                        variant="outline"
-                        className="border-zinc-700 text-white hover:bg-zinc-800"
+                        className="bg-transparent border border-zinc-700 text-white hover:bg-zinc-800"
                         onClick={() => router.push("/quiz/results")}
                     >
                         <Trophy className="mr-2 h-4 w-4 text-amber-400" />
@@ -265,10 +264,9 @@ export default function QuizPage() {
                 {/* Navigation */}
                 <div className="flex items-center justify-between">
                     <Button
-                        variant="outline"
                         onClick={() => setCurrentIndex(Math.max(0, currentIndex - 1))}
                         disabled={currentIndex === 0}
-                        className="border-zinc-700 text-white hover:bg-zinc-800"
+                        className="bg-transparent border border-zinc-700 text-white hover:bg-zinc-800"
                     >
                         <ChevronLeft className="mr-1 h-4 w-4" /> Previous
                     </Button>
@@ -383,8 +381,7 @@ export default function QuizPage() {
                 {/* Actions */}
                 <div className="flex items-center justify-center gap-3">
                     <Button
-                        variant="outline"
-                        className="border-zinc-700 text-white hover:bg-zinc-800"
+                        className="bg-transparent border border-zinc-700 text-white hover:bg-zinc-800"
                         onClick={() => {
                             setPhase("select");
                             setResult(null);

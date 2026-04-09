@@ -348,7 +348,7 @@ export default function HabitsPage() {
                         </div>
                     </div>
                     <DialogFooter>
-                        <Button variant="outline" onClick={() => setEditingHabit(null)} className="border-zinc-700 text-white hover:bg-zinc-800">Cancel</Button>
+                        <Button onClick={() => setEditingHabit(null)} className="bg-transparent border border-zinc-700 text-white hover:bg-zinc-800">Cancel</Button>
                         <Button onClick={handleUpdate} className="bg-violet-600 hover:bg-violet-700">Save Changes</Button>
                     </DialogFooter>
                 </DialogContent>

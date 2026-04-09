@@ -112,8 +112,7 @@ export default function LeetCodePage() {
                         <Button
                             onClick={() => fetchProfile(username)}
                             disabled={loadingProfile || !username}
-                            variant="outline"
-                            className="border-zinc-700 text-white hover:bg-zinc-800"
+                            className="bg-transparent border border-zinc-700 text-white hover:bg-zinc-800"
                         >
                             {loadingProfile ? "Loading..." : "Fetch"}
                         </Button>
