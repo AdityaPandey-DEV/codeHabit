@@ -400,7 +400,7 @@ export default function QuizPage() {
                     </Button>
                     <Button
                         variant="outline"
-                        className="border-zinc-700 text-white hover:bg-zinc-800"
+                        className="bg-white text-black border-white hover:bg-zinc-200"
                         onClick={() => router.push("/quiz/results")}
                     >
                         View All Results
