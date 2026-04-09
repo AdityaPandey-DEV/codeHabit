@@ -61,7 +61,7 @@ export function Sidebar() {
             <div className="px-3 py-2 flex-1">
                 <Link href="/" className="flex items-center pl-3 mb-14">
                     <h1 className="text-2xl font-bold">
-                        Dev<span className="text-violet-500">Track</span>
+                        Code<span className="text-violet-500">Habit</span>
                     </h1>
                 </Link>
                 <div className="space-y-1">

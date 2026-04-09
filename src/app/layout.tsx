@@ -8,7 +8,7 @@ import { MobileSidebar } from "@/components/MobileSidebar";
 const inter = Inter({ subsets: ["latin"] });
 
 const siteConfig = {
-  name: "DevTrack",
+  name: "CodeHabit",
   description: "A professional habit and coding analytics platform for developers. Track progress, monitor LeetCode activity, and master core CS concepts.",
   url: "https://code-habit.vercel.app",
   ogImage: "https://code-habit.vercel.app/opengraph-image.png",
@@ -16,8 +16,8 @@ const siteConfig = {
 
 export const metadata: Metadata = {
   title: {
-    default: "DevTrack — Habit & Coding Analytics Platform",
-    template: "%s | DevTrack",
+    default: "CodeHabit — Habit & Coding Analytics Platform",
+    template: "%s | CodeHabit",
   },
   description: siteConfig.description,
   keywords: [
@@ -28,31 +28,31 @@ export const metadata: Metadata = {
     "CS Quiz",
     "Software Engineer Tools",
   ],
-  authors: [{ name: "DevTrack Team" }],
-  creator: "DevTrack",
+  authors: [{ name: "CodeHabit Team" }],
+  creator: "CodeHabit",
   metadataBase: new URL(siteConfig.url),
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
-    title: "DevTrack — Habit & Coding Analytics Platform",
+    title: "CodeHabit — Habit & Coding Analytics Platform",
     description: siteConfig.description,
-    siteName: "DevTrack",
+    siteName: "CodeHabit",
     images: [
       {
         url: "/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: "DevTrack Platform",
+        alt: "CodeHabit Platform",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DevTrack — Habit & Coding Analytics Platform",
+    title: "CodeHabit — Habit & Coding Analytics Platform",
     description: siteConfig.description,
     images: ["/opengraph-image.png"],
-    creator: "@devtrack",
+    creator: "@codehabit",
   },
   icons: {
     icon: "/icon.png",
@@ -77,7 +77,7 @@ export default function RootLayout({
           <main className="md:pl-72 h-full min-h-screen text-white">
             <div className="md:hidden p-4 flex items-center bg-[#111827] border-b border-[#1f2937]">
               <MobileSidebar />
-              <span className="font-bold text-lg ml-2">Dev<span className="text-violet-500">Track</span></span>
+              <span className="font-bold text-lg ml-2">Code<span className="text-violet-500">Habit</span></span>
             </div>
             {children}
           </main>

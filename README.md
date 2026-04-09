@@ -1,8 +1,8 @@
-# DevTrack — Habit & Coding Analytics Platform
+# CodeHabit — Habit & Coding Analytics Platform
 
-**DevTrack** (formerly CodeHabit) is a unified, serverless Next.js platform designed to be the ultimate productivity command center for developers. It helps you track your daily habits, monitor your LeetCode consistency, complete study diaries, and test your knowledge through core CS quizzes.
+**CodeHabit** (formerly CodeHabit) is a unified, serverless Next.js platform designed to be the ultimate productivity command center for developers. It helps you track your daily habits, monitor your LeetCode consistency, complete study diaries, and test your knowledge through core CS quizzes.
 
-![DevTrack Dashboard](https://code-habit.vercel.app/opengraph-image.png)
+![CodeHabit Dashboard](https://code-habit.vercel.app/opengraph-image.png)
 
 ## 🌐 Live Demo
 

@@ -1,6 +1,6 @@
 {
-  "name": "DevTrack",
-  "short_name": "DevTrack",
+  "name": "CodeHabit",
+  "short_name": "CodeHabit",
   "description": "Professional developer productivity and habit tracking platform.",
   "start_url": "/",
   "display": "standalone",

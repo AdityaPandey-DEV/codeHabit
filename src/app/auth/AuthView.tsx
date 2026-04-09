@@ -72,7 +72,7 @@ export default function AuthPage() {
             <div className="z-10 w-full max-w-md space-y-8">
                 <div className="text-center">
                     <h1 className="text-5xl font-bold tracking-tight text-white mb-2">
-                        Dev<span className="bg-gradient-to-r from-violet-500 to-purple-500 bg-clip-text text-transparent">Track</span>
+                        Code<span className="bg-gradient-to-r from-violet-500 to-purple-500 bg-clip-text text-transparent">Habit</span>
                     </h1>
                     <p className="text-zinc-400 text-lg">Your developer productivity command center</p>
                     
