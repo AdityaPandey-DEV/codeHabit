@@ -1,26 +1,25 @@
-# CodeHabit — Habit & Coding Analytics Platform
+# CodeHabit
 
-**CodeHabit** (formerly CodeHabit) is a unified, serverless Next.js platform designed to be the ultimate productivity command center for developers. It helps you track your daily habits, monitor your LeetCode consistency, complete study diaries, and test your knowledge through core CS quizzes.
+CodeHabit is a personal workspace for developers to record habits, focused study sessions, diary notes, quizzes, and LeetCode activity.
 
 ![CodeHabit Dashboard](https://code-habit.vercel.app/opengraph-image.png)
 
-## 🌐 Live Demo
+## Live site
 
-**[code-habit.vercel.app](https://code-habit.vercel.app)**  
-*(Vercel URL renaming coming soon)*
+Set `NEXT_PUBLIC_SITE_URL` to the HTTPS address of your own domain, for example `https://app.yourdomain.com`. This value is used for site metadata and sharing previews.
 
-## ✨ Features
+## Features
 
 | Module | Description |
 |--------|-------------|
-| **Dashboard** | Unified view with correlation charts, AI insights, LeetCode donut chart, and yearly heatmap |
+| **Dashboard** | View saved habits and coding activity together |
 | **Habit Tracker** | Add / edit / delete habits, daily check-offs, streak tracking, 90-day calendar view |
 | **LeetCode Analytics** | Profile stats (Easy/Med/Hard), yearly 365-day submission heatmap, current streak |
 | **Quiz Assessment** | 10-question MCQs in Full Stack Dev, DBMS, and OS with timer and score tracking |
-| **Analytics** | 30-day habit vs. coding correlation with Pearson coefficient and AI-generated insights |
+| **Analytics** | 30-day habit and coding correlation based on your saved records |
 | **Diary** | Daily journal entries, task management, and study timer |
 
-## 🏗️ Tech Stack
+## Tech Stack
 
 - **Frontend**: Next.js 16 (React 19), Tailwind CSS v4, shadcn/ui, Recharts
 - **Backend**: Next.js API Routes (serverless)
@@ -28,7 +27,7 @@
 - **Auth**: JWT (bcryptjs + jsonwebtoken)
 - **Deployment**: Vercel (single project)
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ├── prisma/
@@ -62,7 +61,7 @@
 │       └── math.ts         # Correlation calculation
 ```
 
-## 🛠️ Setup
+## Setup
 
 ### Prerequisites
 - Node.js 18+
@@ -89,9 +88,10 @@ npm run dev           # Start at localhost:3000
 2. Import project in Vercel
 3. Add Vercel Postgres from Storage tab
 4. Add `JWT_SECRET` environment variable
-5. Deploy — Prisma generates automatically via `postinstall`
+5. Add your custom domain in Vercel and set `NEXT_PUBLIC_SITE_URL` to its full HTTPS address.
+6. Deploy. Prisma generates automatically via `postinstall`.
 
-## 📝 API Endpoints
+## API Endpoints
 
 | Method | Endpoint | Auth | Description |
 |--------|----------|------|-------------|

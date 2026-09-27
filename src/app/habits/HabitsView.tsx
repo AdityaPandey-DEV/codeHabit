@@ -27,7 +27,7 @@ interface Habit {
 const CATEGORY_COLORS: Record<string, string> = {
     HEALTH: "text-emerald-400 bg-emerald-400/10",
     STUDY: "text-sky-400 bg-sky-400/10",
-    CODING: "text-violet-400 bg-violet-400/10",
+    CODING: "text-teal-700 bg-teal-50",
     OTHER: "text-zinc-400 bg-zinc-400/10",
 };
 
@@ -147,18 +147,16 @@ export default function HabitsPage() {
     const bestStreak = Math.max(...habits.map(h => h.longestStreak || 0), 0);
 
     return (
-        <div className="p-6 md:p-8 space-y-6">
+        <div className="mx-auto max-w-7xl space-y-6 p-5 sm:p-8">
             {/* Header */}
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <div>
-                    <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
-                        Habit Tracker
-                    </h2>
-                    <p className="text-zinc-400 mt-1">Build consistency, one day at a time.</p>
+                    <h2 className="text-3xl font-semibold tracking-tight">Habit tracker</h2>
+                    <p className="mt-1 text-[#617079]">Choose the practices you want to keep visible each day.</p>
                 </div>
                 <Dialog open={open} onOpenChange={setOpen}>
                     <DialogTrigger asChild>
-                        <Button className="bg-violet-600 hover:bg-violet-700">
+                        <Button className="bg-[#0f766e] text-white hover:bg-[#0b5f58]">
                             <Plus className="mr-2 h-4 w-4" /> New Habit
                         </Button>
                     </DialogTrigger>
@@ -179,16 +177,16 @@ export default function HabitsPage() {
                                         <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent className="bg-zinc-900 border-zinc-800 text-white">
-                                        <SelectItem value="HEALTH">🏃 Health</SelectItem>
-                                        <SelectItem value="STUDY">📚 Study</SelectItem>
-                                        <SelectItem value="CODING">💻 Coding</SelectItem>
-                                        <SelectItem value="OTHER">📋 Other</SelectItem>
+                                        <SelectItem value="HEALTH">Health</SelectItem>
+                                        <SelectItem value="STUDY">Study</SelectItem>
+                                        <SelectItem value="CODING">Coding</SelectItem>
+                                        <SelectItem value="OTHER">Other</SelectItem>
                                     </SelectContent>
                                 </Select>
                             </div>
                         </div>
                         <DialogFooter>
-                            <Button onClick={handleCreate} className="bg-violet-600 hover:bg-violet-700">Save Habit</Button>
+                            <Button onClick={handleCreate} className="bg-[#0f766e] text-white hover:bg-[#0b5f58]">Save habit</Button>
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>
@@ -339,17 +337,17 @@ export default function HabitsPage() {
                                     <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent className="bg-zinc-900 border-zinc-800 text-white">
-                                    <SelectItem value="HEALTH">🏃 Health</SelectItem>
-                                    <SelectItem value="STUDY">📚 Study</SelectItem>
-                                    <SelectItem value="CODING">💻 Coding</SelectItem>
-                                    <SelectItem value="OTHER">📋 Other</SelectItem>
+                                    <SelectItem value="HEALTH">Health</SelectItem>
+                                    <SelectItem value="STUDY">Study</SelectItem>
+                                    <SelectItem value="CODING">Coding</SelectItem>
+                                    <SelectItem value="OTHER">Other</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
                     </div>
                     <DialogFooter>
                         <Button onClick={() => setEditingHabit(null)} className="bg-transparent border border-zinc-700 text-white hover:bg-zinc-800">Cancel</Button>
-                        <Button onClick={handleUpdate} className="bg-violet-600 hover:bg-violet-700">Save Changes</Button>
+                        <Button onClick={handleUpdate} className="bg-[#0f766e] text-white hover:bg-[#0b5f58]">Save changes</Button>
                     </DialogFooter>
                 </DialogContent>
             </Dialog>

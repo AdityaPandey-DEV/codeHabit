@@ -10,37 +10,37 @@ const routes = [
         label: "Dashboard",
         icon: Home,
         href: "/",
-        color: "text-sky-500",
+        color: "text-teal-200",
     },
     {
         label: "Habits",
         icon: ListTodo,
         href: "/habits",
-        color: "text-violet-500",
+        color: "text-teal-200",
     },
     {
         label: "LeetCode",
         icon: Code2,
         href: "/leetcode",
-        color: "text-orange-500",
+        color: "text-amber-200",
     },
     {
         label: "Quiz",
         icon: BrainCircuit,
         href: "/quiz",
-        color: "text-amber-500",
+        color: "text-cyan-200",
     },
     {
         label: "Analytics",
         icon: BarChart2,
         href: "/analytics",
-        color: "text-emerald-500",
+        color: "text-teal-200",
     },
     {
         label: "Diary",
         icon: Book,
         href: "/diary",
-        color: "text-pink-500",
+        color: "text-slate-200",
     },
 ];
 
@@ -57,11 +57,11 @@ export function Sidebar() {
     };
 
     return (
-        <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white border-r border-[#1f2937]">
+        <div className="space-y-4 py-5 flex flex-col h-full bg-[#102a2a] text-white border-r border-[#264747]">
             <div className="px-3 py-2 flex-1">
-                <Link href="/" className="flex items-center pl-3 mb-14">
-                    <h1 className="text-2xl font-bold">
-                        Code<span className="text-violet-500">Habit</span>
+                <Link href="/" className="flex items-center pl-3 mb-12">
+                    <h1 className="text-xl font-semibold tracking-tight">
+                        Code<span className="text-teal-200">Habit</span>
                     </h1>
                 </Link>
                 <div className="space-y-1">
@@ -70,8 +70,8 @@ export function Sidebar() {
                             key={route.href}
                             href={route.href}
                             className={cn(
-                                "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition",
-                                pathname === route.href ? "text-white bg-white/10" : "text-zinc-400"
+                                "text-sm group flex px-3 py-2.5 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-md transition-colors",
+                                pathname === route.href ? "text-white bg-teal-950/70 ring-1 ring-inset ring-teal-300/20" : "text-slate-300"
                             )}
                         >
                             <div className="flex items-center flex-1">
@@ -82,10 +82,10 @@ export function Sidebar() {
                     ))}
                 </div>
             </div>
-            <div className="px-3 py-2 border-t border-zinc-800">
+            <div className="px-3 py-2 border-t border-[#264747]">
                 <button
                     onClick={handleLogout}
-                    className="text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-red-500/10 rounded-lg transition text-zinc-400"
+                    className="text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-red-500/10 rounded-md transition-colors text-slate-300"
                 >
                     <div className="flex items-center flex-1">
                         <LogOut className="h-5 w-5 mr-3 text-red-500" />

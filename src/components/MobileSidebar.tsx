@@ -24,7 +24,7 @@ export const MobileSidebar = () => {
                     <Menu className="h-6 w-6 text-white" />
                 </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="p-0 bg-gray-900 border-gray-800 text-white w-72">
+            <SheetContent side="left" className="w-72 border-[#264747] bg-[#102a2a] p-0 text-white">
                 <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 <Sidebar mb-0 />
             </SheetContent>

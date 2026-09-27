@@ -107,8 +107,8 @@ export default function Dashboard() {
     return (
       <div className="flex items-center justify-center h-screen">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-violet-500 border-t-transparent rounded-full animate-spin" />
-          <p className="text-zinc-400 animate-pulse">Loading dashboard...</p>
+          <div className="h-8 w-8 border-2 border-[#0f766e] border-t-transparent rounded-full animate-spin" />
+          <p className="text-[#617079]">Loading dashboard...</p>
         </div>
       </div>
     );
@@ -122,91 +122,89 @@ export default function Dashboard() {
   ] : [];
 
   return (
-    <div className="p-6 md:p-8 space-y-6">
+    <div className="mx-auto max-w-7xl space-y-8 p-5 sm:p-8">
       {/* Header */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
-            Dashboard
-          </h2>
-          <p className="text-zinc-400 mt-1">Your unified productivity overview</p>
+          <h2 className="text-3xl font-semibold tracking-tight">Dashboard</h2>
+          <p className="mt-1 text-[#617079]">Review the activity you have recorded across habits, coding, and study.</p>
         </div>
         <div className="flex items-center gap-2">
-          <Button className="border border-zinc-700 bg-transparent text-white hover:bg-zinc-800" onClick={() => router.push('/habits')}>Manage Habits</Button>
-          <Button className="bg-violet-600 hover:bg-violet-700 text-white" onClick={() => router.push('/quiz')}>Take Quiz</Button>
+          <Button variant="outline" className="border-[#9caeb2] bg-white text-[#15212b] hover:bg-[#eef3f2]" onClick={() => router.push('/habits')}>Manage habits</Button>
+          <Button className="bg-[#0f766e] text-white hover:bg-[#0b5f58]" onClick={() => router.push('/quiz')}>Take quiz</Button>
         </div>
       </div>
 
       {/* Top Stats */}
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-        <Card className="bg-zinc-900/80 border-zinc-800 text-white backdrop-blur hover:border-violet-500/30 transition-all duration-300">
+        <Card className="border-[#dbe2e5] bg-white text-[#15212b]">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Habits (30d)</CardTitle>
-            <Activity className="h-4 w-4 text-violet-500" />
+            <Activity className="h-4 w-4 text-[#0f766e]" />
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold">{data.summary.totalHabitsLast30Days}</div>
-            <p className="text-xs text-zinc-400 mt-1">Completed actions</p>
+            <p className="mt-1 text-xs text-[#617079]">Recorded in the last 30 days</p>
           </CardContent>
         </Card>
-        <Card className="bg-zinc-900/80 border-zinc-800 text-white backdrop-blur hover:border-emerald-500/30 transition-all duration-300">
+        <Card className="border-[#dbe2e5] bg-white text-[#15212b]">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Problems Solved</CardTitle>
             <Code className="h-4 w-4 text-emerald-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-emerald-400">{profile?.totalSolved || data.summary.totalProblemsSolvedLast30Days}</div>
-            <p className="text-xs text-zinc-400 mt-1">{profile ? "Total on LeetCode" : "Last 30 days (synced)"}</p>
+            <div className="text-3xl font-bold text-[#2563eb]">{profile?.totalSolved || data.summary.totalProblemsSolvedLast30Days}</div>
+            <p className="mt-1 text-xs text-[#617079]">{profile ? "Total shown by LeetCode" : "Accepted in the last 30 days"}</p>
           </CardContent>
         </Card>
-        <Card className="bg-zinc-900/80 border-zinc-800 text-white backdrop-blur hover:border-orange-500/30 transition-all duration-300">
+        <Card className="border-[#dbe2e5] bg-white text-[#15212b]">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Current Streak</CardTitle>
             <Flame className="h-4 w-4 text-orange-500" />
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold text-orange-400">{leetcodeStreak}</div>
-            <p className="text-xs text-zinc-400 mt-1">Days of coding</p>
+            <p className="mt-1 text-xs text-[#617079]">Consecutive days recorded</p>
           </CardContent>
         </Card>
-        <Card className="bg-gradient-to-br from-violet-900/50 to-indigo-900/50 border-violet-500/30 text-white hover:border-violet-500/50 transition-all duration-300">
+        <Card className="border-[#c7ded9] bg-[#f1faf8] text-[#15212b]">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-violet-200 flex items-center gap-2">
-              <BrainCircuit className="h-4 w-4" /> AI Insight
+            <CardTitle className="flex items-center gap-2 text-sm font-medium text-[#173a38]">
+              <BrainCircuit className="h-4 w-4" /> Pattern to review
             </CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm leading-relaxed">{data.insight}</p>
-            <p className="text-xs text-violet-300 mt-2">Correlation: {data.correlation}</p>
+            <p className="mt-2 text-xs text-[#52626b]">Correlation: {data.correlation}</p>
           </CardContent>
         </Card>
       </div>
 
       {/* Charts Row */}
       <div className="grid gap-4 grid-cols-1 lg:grid-cols-7">
-        <Card className="col-span-1 lg:col-span-4 bg-zinc-900/80 border-zinc-800 text-white backdrop-blur">
+        <Card className="col-span-1 border-[#dbe2e5] bg-white text-[#15212b] lg:col-span-4">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <TrendingUp className="h-5 w-5 text-violet-500" />
-              Performance Correlation
+              <TrendingUp className="h-5 w-5 text-[#0f766e]" />
+              Habit and coding activity
             </CardTitle>
-            <CardDescription>Habits vs. coding output over the last 30 days</CardDescription>
+            <CardDescription>Your saved activity by day over the last 30 days.</CardDescription>
           </CardHeader>
           <CardContent className="pl-2">
             <div className="h-[320px] w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <ComposedChart data={data.chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#27272a" />
-                  <XAxis dataKey="date" stroke="#888" fontSize={11} />
-                  <YAxis yAxisId="left" stroke="#888" fontSize={11} />
-                  <YAxis yAxisId="right" orientation="right" stroke="#888" fontSize={11} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#dbe2e5" />
+                  <XAxis dataKey="date" stroke="#617079" fontSize={11} />
+                  <YAxis yAxisId="left" stroke="#617079" fontSize={11} />
+                  <YAxis yAxisId="right" orientation="right" stroke="#617079" fontSize={11} />
                   <Tooltip
-                    contentStyle={{ backgroundColor: '#18181b', border: '1px solid #27272a', borderRadius: '8px' }}
-                    itemStyle={{ color: '#fff' }}
+                    contentStyle={{ backgroundColor: '#ffffff', border: '1px solid #dbe2e5', borderRadius: '6px' }}
+                    itemStyle={{ color: '#15212b' }}
                   />
                   <Legend />
-                  <Bar yAxisId="left" dataKey="habits" name="Habits" fill="#8b5cf6" radius={[4, 4, 0, 0]} barSize={16} />
-                  <Line yAxisId="right" type="monotone" dataKey="problems" name="Problems" stroke="#10b981" strokeWidth={2} dot={{ r: 3, fill: '#10b981' }} />
+                  <Bar yAxisId="left" dataKey="habits" name="Habits" fill="#0f766e" radius={[3, 3, 0, 0]} barSize={16} />
+                  <Line yAxisId="right" type="monotone" dataKey="problems" name="Problems" stroke="#2563eb" strokeWidth={2} dot={{ r: 3, fill: '#2563eb' }} />
                 </ComposedChart>
               </ResponsiveContainer>
             </div>
@@ -214,7 +212,7 @@ export default function Dashboard() {
         </Card>
 
         {/* LeetCode Profile Card or Recent Activity */}
-        <Card className="col-span-1 lg:col-span-3 bg-zinc-900/80 border-zinc-800 text-white backdrop-blur">
+        <Card className="col-span-1 border-[#dbe2e5] bg-white text-[#15212b] lg:col-span-3">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Trophy className="h-5 w-5 text-amber-500" />

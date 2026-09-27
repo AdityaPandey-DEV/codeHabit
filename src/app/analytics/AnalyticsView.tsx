@@ -53,8 +53,8 @@ export default function AnalyticsPage() {
         <div className="p-8 space-y-8">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <div>
-                    <h2 className="text-3xl font-bold tracking-tight">Analytics Deep Dive</h2>
-                    <p className="text-zinc-400">Detailed breakdown of your performance metrics.</p>
+                    <h2 className="text-3xl font-semibold tracking-tight">Activity analysis</h2>
+                    <p className="text-[#617079]">Review the relationship between activity you have recorded.</p>
                 </div>
                 <Button className="border border-zinc-700 bg-transparent text-white hover:bg-zinc-800" onClick={() => window.location.reload()}>Refresh</Button>
             </div>
@@ -63,11 +63,11 @@ export default function AnalyticsPage() {
                 {/* Insight Card */}
                 <Card className="bg-zinc-900 border-zinc-800 text-white">
                     <CardHeader>
-                        <CardTitle>AI Insight</CardTitle>
+                        <CardTitle>Recorded pattern</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-lg font-medium text-violet-400 mb-2">
-                            Correlation Score: {data.correlation}
+                        <div className="mb-2 text-lg font-medium text-[#0f766e]">
+                            Correlation: {data.correlation}
                         </div>
                         <p className="text-zinc-300">{data.insight}</p>
                     </CardContent>

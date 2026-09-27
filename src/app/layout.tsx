@@ -1,22 +1,21 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Sidebar } from "@/components/Sidebar";
 import { Toaster } from "@/components/ui/sonner";
-import { MobileSidebar } from "@/components/MobileSidebar";
+import { AppShell } from "@/components/AppShell";
 
 const inter = Inter({ subsets: ["latin"] });
 
 const siteConfig = {
   name: "CodeHabit",
-  description: "A professional habit and coding analytics platform for developers. Track progress, monitor LeetCode activity, and master core CS concepts.",
-  url: "https://code-habit.vercel.app",
-  ogImage: "https://code-habit.vercel.app/opengraph-image.png",
+  description: "A personal workspace for habits, study sessions, quizzes, and coding activity.",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://app.codehabit.com",
+  ogImage: "/opengraph-image.png",
 };
 
 export const metadata: Metadata = {
   title: {
-    default: "CodeHabit — Habit & Coding Analytics Platform",
+    default: "CodeHabit",
     template: "%s | CodeHabit",
   },
   description: siteConfig.description,
@@ -28,14 +27,14 @@ export const metadata: Metadata = {
     "CS Quiz",
     "Software Engineer Tools",
   ],
-  authors: [{ name: "CodeHabit Team" }],
+  authors: [{ name: "CodeHabit" }],
   creator: "CodeHabit",
   metadataBase: new URL(siteConfig.url),
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
-    title: "CodeHabit — Habit & Coding Analytics Platform",
+    title: "CodeHabit",
     description: siteConfig.description,
     siteName: "CodeHabit",
     images: [
@@ -49,13 +48,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "CodeHabit — Habit & Coding Analytics Platform",
+    title: "CodeHabit",
     description: siteConfig.description,
     images: ["/opengraph-image.png"],
-    creator: "@codehabit",
   },
   icons: {
-    icon: "/icon.png",
+    icon: "/icon.svg",
     shortcut: "/favicon.ico",
     apple: "/apple-icon.png",
   },
@@ -70,19 +68,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="h-full relative bg-[#0a0a0a]">
-          <div className="hidden h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0 z-[80] bg-gray-900">
-            <Sidebar />
-          </div>
-          <main className="md:pl-72 h-full min-h-screen text-white">
-            <div className="md:hidden p-4 flex items-center bg-[#111827] border-b border-[#1f2937]">
-              <MobileSidebar />
-              <span className="font-bold text-lg ml-2">Code<span className="text-violet-500">Habit</span></span>
-            </div>
-            {children}
-          </main>
-          <Toaster />
-        </div>
+        <AppShell>{children}</AppShell>
+        <Toaster />
       </body>
     </html>
   );
